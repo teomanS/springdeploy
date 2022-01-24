@@ -18,7 +18,7 @@ spec:
     - name: JENKINS_TUNNEL
       value: 20.103.116.88:80
     workingDir: /home/jenkins/agent
-  - name: maven
+  - name: deployer
     image: lachlanevenson/k8s-kubectl:v1.20.15  
     command:
     - sleep
