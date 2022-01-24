@@ -1,20 +1,19 @@
-podTemplate(cloud: "aksdev", yaml: '''
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: deployer
-    image: lachlanevenson/k8s-kubectl:v1.20.15 
-    command:
-    - sleep
-    args:
-    - 99d     
-''') {
-    node(POD_LABEL) {
-        container('deployer') {
-            sh "ls -al"
-            sh "kubectl apply -f sampleapp-dep.yaml"
-            sh "kubectl apply -f sampleapp-svc.yaml"
-        }
+pipeline {
+  agent {
+    kubernetes {
+      cloud 'aksdev'
+      yamlFile 'kubepod.yaml'
     }
+  }
+    stages { 
+    stage('Deploy Application') {
+      steps {
+        container('deployer') {
+          sh 'ls -al'
+          sh "kubectl apply -f sampleapp-dep.yaml"
+          sh "kubectl apply -f sampleapp-svc.yaml"          
+        }
+      }
+    }
+  }
 }
