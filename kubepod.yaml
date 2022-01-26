@@ -14,7 +14,7 @@ spec:
     - name: HOME
       value: /home/jenkins  
     - name: JENKINS_URL
-      value: http://20.101.163.85/
+      value: http://20.103.69.224/
     - name: JENKINS_TUNNEL
       value: 20.103.116.88:80
     workingDir: /home/jenkins/agent
